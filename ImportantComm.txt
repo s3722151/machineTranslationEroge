@@ -1,0 +1,20 @@
+GIT
+
+Commaands I will use
+ctrl j (in terminal): Opens and closes terminal
+clear : This clears command terminal
+mkdir FOLDER: Creates folder called FOLDER
+
+git status: Tells of file changes, conflicts etc.
+- Also if things have been saved(committed)
+git add . : This adds changes from local directory to staging area
+git commit -m "This is a commit" :This saves the changes with a comment
+
+cd git NAMEoffolder: GOES into directory 
+touch test.py: This creates a file
+
+
+General Commands
+git : This shows commands
+git config : Shows config options
+git config --list :
