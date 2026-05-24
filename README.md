@@ -14,11 +14,15 @@ Set 3 files.
 23/5/2026
 Look at this to revise how to use GIT
 https://www.youtube.com/watch?v=CvUiKWv2-C0
+Look at settings
+Ctrl + ,: Opens settings
+    How to ensure .git is shown: search exclude then delete .git
 
+24/5/2026
+Finish watching how to use GITs: https://youtu.be/CvUiKWv2-C0?t=1031
 
 FUTURE
-
 Look at this to revise how to use GIT
-https://www.youtube.com/watch?v=CvUiKWv2-C0
-
+https://youtu.be/CvUiKWv2-C0?t=1031
+https://www.youtube.com/watch?v=oZpKSd8wdZk
 https://medium.com/@brittanycity/100-days-of-data-analytics-a-complete-guide-d278ac34655b

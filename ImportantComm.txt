@@ -1,20 +1,45 @@
-GIT
+GIT GUIDE
 
-Commaands I will use
+TERMINAL COMMANDS
 ctrl j (in terminal): Opens and closes terminal
 clear : This clears command terminal
 mkdir FOLDER: Creates folder called FOLDER
-
-git status: Tells of file changes, conflicts etc.
-- Also if things have been saved(committed)
-git add . : This adds changes from local directory to staging area
-git commit -m "This is a commit" :This saves the changes with a comment
-
 cd git NAMEoffolder: GOES into directory 
 touch test.py: This creates a file
+rm -rf .git : Remove git directory
+    Can only be used in BASH terminal
+git mv <source_folder> <destination_path>: This moves a file
+cd .. : Goes back from directory
+
+SETTING UP CONFIG
+Go to FOLDER
+git init : This inititalises folder to do do commits
+git config --global user.name "Josh Cayetano"
+    git config user.name : This can check is username is set
+git config --global user.email "EMAIL"
+git config --global init.defaultBranch main   
+git clone INSERTURL : GETS THE FILES
+git branch -M main: This makes this default branch
+git config credential.helper 'cache --timeout=72000' : This saves credentials for 900 secs
 
 
-General Commands
+UPDATE CHANGES
+Files
+git status: Tells of file changes, conflicts etc.
+- Also if things have been saved(committed)
+git restore index.html:  command used to undo uncommitted local changes by restoring files 
+in your working directory or staging area to a previous state.
+Local repo change
+git commit -a -m "Shortcut" : This combines adding to stage and commiting <<---
+    If message not done, will be prompted in text file 
+    git add . : This adds changes from local directory to staging area
+    git commit -m "This is a commit" :This saves the changes with a comment
+Remote push 
+git push -u origin main: 
+
+
+
+GENERAL COMMANDS
 git : This shows commands
 git config : Shows config options
 git config --list :
