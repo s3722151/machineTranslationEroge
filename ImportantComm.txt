@@ -1,4 +1,9 @@
-GIT GUIDE
+GIT COMMAND GUIDE
+Source: https://www.youtube.com/watch?v=mAFoROnOfHs
+NOTE: Better to open bask terminal than pwsh terminal
+GIT is a version control system
+    GitHub stores files remotely
+    Local is local files (write, create, modify), Remote refers to Github
 
 TERMINAL COMMANDS
 ctrl j (in terminal): Opens and closes terminal
@@ -13,9 +18,16 @@ cd .. : Goes back from directory
 
 SETTING UP CONFIG
 Go to FOLDER
-git init : This inititalises folder to do do commits
-git config --global user.name "Josh Cayetano"
+git init : This inititalises folder to do do commits. MANDATORY 
+    Message "Initialized empty Git repository in .." means git started tracking folder
+git config --global user.name "Josh Cayetano" 
+git config --global user.name "Josh Cayetano" 
     git config user.name : This can check is username is set
+Ensure .git file is seen: https://youtu.be/CvUiKWv2-C0?t=619
+    File->Preferences ->Settings
+     In settings type "exclude". Remove .git from 
+ls -a : THis views hidden files
+
 git config --global user.email "EMAIL"
 git config --global init.defaultBranch main   
 git clone INSERTURL : GETS THE FILES
@@ -23,20 +35,163 @@ git branch -M main: This makes this default branch
 git config credential.helper 'cache --timeout=72000' : This saves credentials for 900 secs
 
 
-UPDATE CHANGES
-Files
+2.COMMANDS IN WORKING DIRECTORY
 git status: Tells of file changes, conflicts etc.
 - Also if things have been saved(committed)
 git restore index.html:  command used to undo uncommitted local changes by restoring files 
-in your working directory or staging area to a previous state.
+                        in your working directory or staging area to a previous state.
 Local repo change
-git commit -a -m "Shortcut" : This combines adding to stage and commiting <<---
-    If message not done, will be prompted in text file 
-    git add . : This adds changes from local directory to staging area
-    git commit -m "This is a commit" :This saves the changes with a comment
-Remote push 
-git push -u origin main: 
+git add -A : This saves all to staging area (save changes to git)
+    also  git add--all
+    git add . : This only saves changes from the current directory. If made changes outside, not saved. 
+                E.g. Folder 1 and Folder 2. Made changes 1 & 2, Are in 2 and do this command, 2 changes saved only.
+                USE when in root directory to save all changes 
+    git add * : This stages all visible changes except deleted files in current directory. Doesn't include sub directories.
+        git add *.txt : THis only works in current directory
 
+3.COMMANDS IN STAGING DIRECTORY: https://youtu.be/mAFoROnOfHs?t=1826
+git commit -m "This is a commit" :This saves the changes with a comment
+    git commit -a -m "Shortcut" : This combines adding to stage and commiting <<---
+    If message not done, will be prompted in text file 
+git reset : This undos all changes added to staging. NOT the files if deleted. 
+    IF commit & want to undo.
+    git reset HEAD~ : This undos last commit and brings everything back to working directory
+    IF add & want deleted files. 
+    git reset --hard: This resets commmits but also brings back deleted files
+git rm four.txt: This removes the file and saves it to the staging area
+    This won't work if uncommitted changes. Solved if committed or;
+    truely confirmed for discard:  git rm -f four.txt
+add flags 
+    --force: completey deletes the fike
+    --cached: Only removes it from staging
+How to top tracking files 
+git rm --cached four.txt
+git rm -r <FOLDER>
+    R is recursive: This means if there are subfoldersm all removed recursively
+View commit log
+git log
+git log --online: Shortened format. One line per commit
+Branching 
+-This is used to allow multiple devs to work on
+-Master is Main 
+-This will always be seperate unless merged
+git branch: shows branches
+git branch <NAME>: creates a new branch
+git checkout <NAME>: switches branches 
+- When you switch branches, changes on that branch won't be shown
+Merging branches
+git merge main -m "Merging main into development"
+Resolving Merge conflicts
+- E.g., four.txt. 1 branch has 44, another has 444. 
+-When git merge <NAME>, get an error in file:
+    four
+    <<<<<<< HEAD
+    444
+    =======
+    44
+    >>>>>>> staging
+-<< means current branch, >> means the end or staging branch
+-Delete what you don't want, add then commit:
+    four
+    444
+Checking out previous commits (go back to previous versions)
+git log --oneline: This is to gte summary of commits
+- in log copy the COMMIT ids (e.g.,4b5a8b0)
+git checkout 4b5a8b0: 
+git checkout <NAME>: go back to current branch version
+Comparing commits
+git diff <ID 1> <ID 2>
+-Red is what is removed, green is what is added
+
+4. UNDERSTAND PUSH, FETCH AND PULL: https://youtu.be/mAFoROnOfHs?t=3360
+PUSH: Sending local changes to REMOTE repository
+FETCH: Download changes into local repository, but not yet merging yet. In local memory. Won't appear in local directory yet.
+PULL : Pull = FETCH + MERGE
+      This allows us to VIEW the remote changes
+      Fetching plus merging -so your working depository immediately reflects the remote changes. 
+To push changes to REMOTE
+git push origin main
+- Origin refers to remote rep. Main is branch you want to push.
+- Other branches will not be uploaded
+- IN github select main then branches
+To upload other branches
+ 1. switch branches: git checkout <NAME>
+ 2. push: git push origin <NAME>
+Git Fetch vs Pull
+Fetch
+-First get changes from remote: git fetch
+-Then merge those changes: git merge
+Pull
+git pull: This combines merge and fetch
+
+Discarding local changes
+- Done when code a lot locally but not work.
+- Could manually fix line by line but too long
+git restore <FILENAME>
+git restore services:  This restores an entire directory(folder) instead of single file
+git restore . : This restores an entire repository
+git restore --staged <filename> : This restores file but removes staging area
+
+Git Stash: Saving unfinished work
+Why use it 
+-When work on 1 branch, asked to check another branch
+-Git doesn't allow switching branches without being committed(saved)
+Steps
+- Store changes: git stash
+- switch branches 
+- go back to main branch 
+- get changes back up: git stash pop
+                       get stash pop stash@<ID>
+                       -After stash is used, removed PERMA
+-If stashed multiple times, get them them in order by recent
+git stash apply: This applies stashed changes but keeps them in STASH LIST.
+git stash list: This lists all stashs
+- This gets all the stashes with their IDS
+git stash pop stash @{0}
+git stash apply stash @{0}
+git stash drop: drops all stored stash
+
+Git revert: Undoing commits Safely 
+What is it
+- Used to undo the changes made in a previous commit.
+- Instead of deleting old commit, creates new one that reverses changes.
+Command: git revert <ID>
+- ID obtained by git log --oneline
+- enter ":wq" : This means write and quit 
+- After which changes would be undone
+Reset vs Revert 
+- Reset takes work back to previous pint then discards previous work withour creating new commits
+- Revert: Removes changes from a commit and makes a new one
+- If on GitHub, you check logs after reset, no record of removed commits
+
+Git Rebase: Cleaning up history
+Why 
+- When you want to add something from another branch(merge), it creates a commit
+- Doing this multiple times can make commit history long
+Process
+- git first identify most recent common commit between current branche and rebasing one
+- All commits in your branch after shared point stored aside
+- Git puts all the features in main branch into feature(current) branch
+- Then the current features you have are added on end 
+- Do changes on one branch 
+- Don't use it when multiple devs use it
+Command
+git rebase main: 
+
+Pull Requests & Collaboration
+-This explores GITHUB
+-Discuss requsting pulling your changes into main/another branh
+- Way of saying can't make changes to someone elses repo
+PUll requests -> NEW PULL REQUEST -> select base branch and branch you want features to ontain
+CREATE PULL Requests
+- Then make comments
+- After click "Create PULL Request"
+Accept changes 
+- Go to Pull requests
+-Merge pull requests
+
+
+git push -u origin main: 
 
 
 GENERAL COMMANDS

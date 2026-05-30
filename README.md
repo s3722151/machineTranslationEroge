@@ -20,9 +20,16 @@ Ctrl + ,: Opens settings
 
 24/5/2026
 Finish watching how to use GITs: https://youtu.be/CvUiKWv2-C0?t=1031
+Started Comprehensive overview: https://youtu.be/mAFoROnOfHs?t=860
+
+30/5/2026
+Continue watching: https://youtu.be/mAFoROnOfHs?t=860
+Decided to create a project outside machinetranslation under "Desktop"
+ls - la: This can veiw hidden files i system
+    E.g. is .git: This is file that tells versions, what files have been changed, who made changes.
+Stage 2: Commit: https://youtu.be/mAFoROnOfHs?t=1826
+Made a lot of notes in ImportantComm file
 
 FUTURE
-Look at this to revise how to use GIT
-https://youtu.be/CvUiKWv2-C0?t=1031
-https://www.youtube.com/watch?v=oZpKSd8wdZk
+Comprehensive overview: https://www.youtube.com/watch?v=mAFoROnOfHs
 https://medium.com/@brittanycity/100-days-of-data-analytics-a-complete-guide-d278ac34655b
